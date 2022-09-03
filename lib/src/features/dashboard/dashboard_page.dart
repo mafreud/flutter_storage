@@ -18,7 +18,7 @@ class DashboardPage extends StatelessWidget {
         title: const Padding(
           padding: EdgeInsets.only(left: 10.0),
           child: Text(
-            'Storage',
+            'ストレージ',
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -44,7 +44,7 @@ class DashboardPage extends StatelessWidget {
                     Icons.search,
                     color: Colors.black,
                   ),
-                  hintText: 'Search files',
+                  hintText: '検索',
                   contentPadding: EdgeInsets.only(top: 10),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 0.3, color: Colors.grey),
@@ -76,7 +76,7 @@ class DashboardPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 20.0, right: 20),
                           child: Text(
-                            'Free',
+                            '無料',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -139,7 +139,7 @@ class DashboardPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Text(
-                  'Shared Files',
+                  '共有ファイル',
                   style: TextStyle(fontSize: 17),
                 ),
                 Icon(
@@ -157,25 +157,25 @@ class DashboardPage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 20.0),
                   child: SharedFile(
-                    text: 'Script files',
+                    text: 'スクリプト',
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 13.0),
                   child: SharedFile(
-                    text: 'Office docs',
+                    text: 'オフィス関連',
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 13.0),
                   child: SharedFile(
-                    text: 'Gallery',
+                    text: 'ギャラリー',
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 13.0),
                   child: SharedFile(
-                    text: 'Others',
+                    text: 'その他',
                   ),
                 ),
               ],
@@ -186,26 +186,26 @@ class DashboardPage extends StatelessWidget {
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Recent Activity',
+                  '最近の利用',
                   style: TextStyle(fontSize: 17),
                 )),
           ),
           SingleChildScrollView(
             child: Column(children: const [
               _ListTile(
-                title: 'Recovery mode',
-                subtitle: '1.4MB・Most recent',
+                title: 'バックアップ',
+                subtitle: '1.4MB・数分前',
               ),
               _ListTile(
                 iconBackgroundColor: Color(0xFFF5DFF5),
-                title: 'Voice recorder',
-                subtitle: '839KB・Most recent',
+                title: '録音',
+                subtitle: '839KB・2時間前',
                 icon: Icons.mic,
               ),
               _ListTile(
                 iconBackgroundColor: Color(0xFFE7F5F8),
                 title: 'IMG23423',
-                subtitle: '12.4MB・Minutes ago',
+                subtitle: '12.4MB・5日前',
                 icon: Icons.image_outlined,
               ),
             ]),
