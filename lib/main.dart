@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_storage/src/features/dashboard/dashboard_page.dart';
+
+import 'src/features/routing/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Storage',
-        theme: ThemeData(),
-        home: const DashboardPage());
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Storage',
+      theme: ThemeData(),
+    );
   }
 }

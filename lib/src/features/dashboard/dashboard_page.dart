@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_storage/src/constants/colors.dart';
+import 'package:flutter_storage/src/features/file/file_list.dart';
+import 'package:flutter_storage/src/features/routing/router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+
+import '../file/file_model.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -186,30 +193,35 @@ class DashboardPage extends StatelessWidget {
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Recent Activity',
+                  'Recent Activities',
                   style: TextStyle(fontSize: 17),
                 )),
           ),
-          SingleChildScrollView(
-            child: Column(children: const [
-              _ListTile(
-                title: 'Recovery mode',
-                subtitle: '1.4MB・Most recent',
-              ),
-              _ListTile(
-                iconBackgroundColor: Color(0xFFF5DFF5),
-                title: 'Voice recorder',
-                subtitle: '839KB・Most recent',
-                icon: Icons.mic,
-              ),
-              _ListTile(
-                iconBackgroundColor: Color(0xFFE7F5F8),
-                title: 'IMG23423',
-                subtitle: '12.4MB・Minutes ago',
-                icon: Icons.image_outlined,
-              ),
-            ]),
-          )
+          Expanded(
+            child: ListView.builder(
+              itemCount: fileList.length,
+              itemBuilder: (context, index) {
+                final singleFile = fileList[index];
+                final extension = singleFile.fileExtension;
+                return GestureDetector(
+                  onTap: () {
+                    context.pushNamed(
+                      AppRoute.detail.name,
+                      params: {ParamsKey.fileId.name: singleFile.fileId},
+                      extra: singleFile,
+                    );
+                  },
+                  child: _ListTile(
+                    title: singleFile.fileName,
+                    subtitle:
+                        '${singleFile.fileSize} ${timeago.format(singleFile.createdAt)}',
+                    iconBackgroundColor: extension.iconColor,
+                    icon: extension.iconData,
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -217,13 +229,13 @@ class DashboardPage extends StatelessWidget {
 }
 
 class _ListTile extends StatelessWidget {
-  const _ListTile(
-      {Key? key,
-      this.iconBackgroundColor = const Color(0xFFE0F0FE),
-      required this.title,
-      required this.subtitle,
-      this.icon = Icons.description_outlined})
-      : super(key: key);
+  const _ListTile({
+    Key? key,
+    required this.iconBackgroundColor,
+    required this.title,
+    required this.subtitle,
+    this.icon = Icons.description_outlined,
+  }) : super(key: key);
 
   final Color iconBackgroundColor;
   final String title;
