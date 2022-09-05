@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_storage/src/features/dashboard/dashboard_page.dart';
 import 'package:flutter_storage/src/features/details/detail_page.dart';
 import 'package:flutter_storage/src/features/file/file_model.dart';
+import 'package:flutter_storage/src/features/upgrade/upgrade_page.dart';
 import 'package:go_router/go_router.dart';
 
-enum AppRoute { dashboard, detail }
+enum AppRoute { dashboard, detail, upgrade }
 
 enum ParamsKey { fileId }
 
@@ -24,6 +25,11 @@ final GoRouter router = GoRouter(
             builder: (context, state) => DetailPage(
               fileModel: state.extra as FileModel,
             ),
+          ),
+          GoRoute(
+            name: AppRoute.upgrade.name,
+            path: 'upgrade',
+            builder: (context, state) => const UpgradePage(),
           ),
         ]),
   ],

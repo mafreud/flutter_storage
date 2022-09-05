@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_storage/src/constants/colors.dart';
 import 'package:flutter_storage/src/features/file/file_list.dart';
 import 'package:flutter_storage/src/features/routing/router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,11 +28,16 @@ class DashboardPage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: SquareIconButton(
-              icon: Icons.add,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              context.pushNamed(AppRoute.upgrade.name);
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: SquareIconButton(
+                icon: Icons.add,
+              ),
             ),
           )
         ],
